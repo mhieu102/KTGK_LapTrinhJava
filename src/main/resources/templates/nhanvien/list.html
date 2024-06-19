@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+        <html xmlns:th="http://www.thymeleaf.org">
+        <head>
+        <meta charset="UTF-8">
+        <title>Danh sách nhân vien</title>
+    <th:block th:replace="layout::link-css"></th:block>
+</head>
+<body>
+<th:block th:replace="layout::header"></th:block>
+<div class="container">
+    <h1 th:text="${title}"></h1>
+    <table class="table">
+        <tr>
+            <th>Mã NV</th>
+            <th>Tên NV</th>
+            <th>Giới Tính</th>
+            <th>Nơi Sinh</th>
+            <th>Lương</th>
+            <th>Mã phòng</th>
+            <th>Chức năng</th>
+        </tr>
+        <tr th:each="nhanvien: ${nhanviens}">
+            <td th:text="${nhanvien.MaNV}"></td>
+            <td th:text="${nhanvien.TenNV}"></td>
+            <!--<td th:text="${nhanvien.Phai}"></td>-->
+            <td ><img th:src="${nhanvien.Phai == 'Nam' || nhanvien.Phai == 'NAM' ? 'https://png.pngtree.com/element_our/png_detail/20181022/male-worker-icon-graphic-png_189128.jpg' : 'https://png.pngtree.com/png-clipart/20190516/original/pngtree-female-worker-icon-vector-png-image_3668950.jpg'}" alt="Gender Icon" style="width: 70px; height: 80px;"></td>
+
+            <td th:text="${nhanvien.NoiSinh}"></td>
+            <td th:text="${nhanvien.Luong}"></td>
+            <td th:text="${nhanvien.phongban.MaPhong}"></td>
+            <td>
+                <a th:href="@{/nhanviens/edit/{id}(id=${nhanvien.id})}" style="background-color:blue" class="btn btn-success btn-sm">Edit</a> |
+                <a th:href="@{/nhanviens/delete/{id}(id=${nhanvien.id})}"
+                   onclick="return confirm ('Bạn có muốn xóa?')"
+                   class="btn btn-danger btn-sm">Delete</a>
+            </td>
+        </tr>
+    </table>
+</div>
+<th:block th:replace="layout::footer"></th:block>
+</body>
+</html></title>
+</head>
+<body>
+
+</body>
+</html>

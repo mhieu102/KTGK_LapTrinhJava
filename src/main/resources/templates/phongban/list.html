@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Category List</title>
+    <th:block th:replace="layout::link-css"></th:block>
+</head>
+<body>
+<th:block th:replace="layout::header"></th:block>
+<div class="container">
+    <h1 th:text="${title}"></h1>
+    <table class="table">
+        <tr>
+            <th>Mã phòng</th>
+            <th>Tên phòng</th>
+            <th>Chức năng</th>
+        </tr>
+        <tr th:each="phongban : ${phongbans}">
+            <td th:text="${phongban.MaPhong}"></td>
+            <td th:text="${phongban.TenPhong}"></td>
+            <td>
+                <a th:href="@{/phongbans/edit/{id}(id=${phongban.id})}" style="background-color:blue" class="btn btn-success btn-sm">Edit</a> |
+                <a th:href="@{/phongbans/delete/{id}(id=${phongban.id})}" class="btn btn-danger btn-sm"
+                   onclick="return confirm('Bạn có muốn xóa?')">Delete</a>
+            </td>
+        </tr>
+    </table>
+</div>
+<th:block th:replace="layout::footer"></th:block>
+</body>
+</html>

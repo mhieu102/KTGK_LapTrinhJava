@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Chỉnh sửa thông tin nhân viên</title>
+    <th:block th:replace="layout::link-css"></th:block>
+</head>
+<body>
+<th:block th:replace="layout::header"></th:block>
+<div class="container">
+    <h1>Chỉnh sửa thông tin nhân viên</h1>
+    <form th:action="@{/nhanviens/edit/{id}(id=${nhanvien.id})}" th:object="${nhanvien}" method="post">
+        <div class="col-6 mb-3">
+            <label class="form-label" for="MaNV">Mã NV:</label>
+            <input class="form-control" type="text" th:field="*{MaNV}" id="MaNV">
+        </div>
+        <div class="col-6 mb-3">
+            <label class="form-label" for="TenNV">Tên NV:</label>
+            <input class="form-control" type="text" th:field="*{TenNV}" id="TenNV">
+        </div>
+        <div class="col-6 mb-3">
+            <label class="form-label" for="Phai">Giới Tính:</label>
+            <input class="form-control" type="text" th:field="*{Phai}" id="Phai">
+        </div>
+        <div class="col-6 mb-3">
+            <label class="form-label" for="NoiSinh">Nơi Sinh:</label>
+            <input class="form-control" type="text" th:field="*{NoiSinh}" id="NoiSinh">
+        </div>
+        <div class="col-6 mb-3">
+            <label class="form-label" for="phongban">Phòng Ban:</label>
+            <select class="form-control"  id="phongban" name="phongban.id">
+                <option value="">-- Select Phong ban --</option>
+                <option th:each="phongban : ${phongbans}" th:value="${phongban.id}"
+                        th:text="${phongban.MaPhong}"></option>
+            </select>
+          <!--  <span th:if="${#fields.hasErrors('phongban')}" th:errors="*{phongban}" class="text-danger"></span>-->
+        </div>
+        <div class="col-6 mb-3">
+            <label class="form-label" for="Luong">Lương:</label>
+            <input class="form-control" type="text" th:field="*{Luong}" id="Luong">
+        </div>
+        <input type="submit" class="btn btn-primary" value="Cập nhật">
+        <a th:href="@{/nhanviens}" class="btn btn-primary">Trở về</a>
+    </form>
+</div>
+
+<th:block th:replace="layout::footer"></th:block>
+</body>
+</html>

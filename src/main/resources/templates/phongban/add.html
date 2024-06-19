@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Category</title>
+    <th:block th:replace="layout::link-css"></th:block>
+</head>
+<body>
+<th:block th:replace="layout::header"></th:block>
+<div class="container">
+    <h1>Thêm Phòng Ban</h1>
+    <form th:action="@{/phongbans/add}" th:object="${phongban}" method="post">
+        <div class="col-6 mb-3">
+            <label class="form-label" for="MaPhong">Mã phòng:</label>
+            <input class="form-control" type="text" th:field="*{MaPhong}" id="MaPhong">
+            <span th:if="${#fields.hasErrors('MaPhong')}" th:errors="*{MaPhong}" class="text-danger"></span>
+        </div>
+        <div class="col-6 mb-3">
+            <label class="form-label" for="TenPhong">Tên phòng:</label>
+            <input class="form-control" type="text" th:field="*{TenPhong}" id="TenPhong">
+            <span th:if="${#fields.hasErrors('TenPhong')}" th:errors="*{TenPhong}" class="text-danger"></span>
+        </div>
+        <input type="submit" class="btn btn-primary" value="Thêm mới">
+        <a th:href="@{/phongbans}" class="btn btn-primary">Trở về</a>
+    </form>
+</div>
+
+<th:block th:replace="layout::footer"></th:block>
+</body>
+</html>
